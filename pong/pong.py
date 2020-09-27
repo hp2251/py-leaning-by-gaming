@@ -32,6 +32,41 @@ ball.color("black")
 ball.penup()
 ball.goto(0, 0)
 
+# Functions
+
+
+def leftPaddleUp():
+    currentYCor = leftPaddle.ycor()
+    currentYCor += 20
+    leftPaddle.sety(currentYCor)
+
+
+def leftPaddleDown():
+    currentYCor = leftPaddle.ycor()
+    currentYCor -= 20
+    leftPaddle.sety(currentYCor)
+
+
+def rightPaddleUp():
+    currentYCor = rightPaddle.ycor()
+    currentYCor += 20
+    rightPaddle.sety(currentYCor)
+
+
+def rightPaddleDown():
+    currentYCor = rightPaddle.ycor()
+    currentYCor -= 20
+    rightPaddle.sety(currentYCor)
+
+
+# Keyboard binding
+window.listen()
+window.onkeypress(leftPaddleUp, "w")
+window.onkeypress(leftPaddleDown, "s")
+window.onkeypress(rightPaddleUp, "Up")
+window.onkeypress(rightPaddleDown, "Down")
+
+
 # Main game loop
 while True:
     window.update()
