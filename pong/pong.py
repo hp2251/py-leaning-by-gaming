@@ -6,6 +6,10 @@ window.bgcolor("gray")
 window.setup(width=1000, height=800)
 window.tracer(0)
 
+# Score
+leftPlayerScore = 0
+rightPlayerScore = 0
+
 # Left Paddle
 leftPaddle = turtle.Turtle()
 leftPaddle.speed(0)
@@ -33,6 +37,16 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = 0.15
 ball.dy = -0.15
+
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 360)
+pen.write("Left Player: 0, Right Player: 0", align="center",
+          font=("Courier", 24, "normal"))
 
 # Functions
 
@@ -89,10 +103,18 @@ while True:
     if ball.xcor() > 520:
         ball.goto(0, 0)
         ball.dx *= -1
+        leftPlayerScore += 1
+        pen.clear()
+        pen.write("Left Player: {}, Right Player: {}".format(leftPlayerScore, rightPlayerScore), align="center",
+                  font=("Courier", 24, "normal"))
 
     if ball.xcor() < -520:
         ball.goto(0, 0)
         ball.dx *= -1
+        rightPlayerScore += 1
+        pen.clear()
+        pen.write("Left Player: {}, Right Player: {}".format(leftPlayerScore, rightPlayerScore), align="center",
+                  font=("Courier", 24, "normal"))
 
     # Paddle and ball collisions
     if (ball.xcor() > 440 and ball.xcor() < 450) and (ball.ycor() < rightPaddle.ycor() + 50 and ball.ycor() > rightPaddle.ycor() - 50):
